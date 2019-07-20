@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import { Container } from 'inversify';
+import { IUtilService } from './common/services/IUtilService';
+import { types as serviceTypes } from './common/services/types';
 import { configureCommonServices } from './common/services/ioc';
+import { configureCommonRepositories } from './common/repositories/ioc';
 import { configureCommandControllers } from './controller/ioc';
-//@ts-ignore
-import controllerTypes from './controller/types';
 
-//@ts-ignore
 var argv = require('yargs')
     .usage('Usage: $0 <command> [options]')
     .command('query', 'get an information about the pokemon')
@@ -28,23 +28,23 @@ const queryField = argv.field;
 
 let container = new Container();
 configureCommonServices(container);
+configureCommonRepositories(container);
 configureCommandControllers(container);
 
-console.log('***************************');
-//console.log(container.get<object[]>(controllerTypes.Commands));
-//console.log(argv);
-console.log('command : ', command);
-console.log('queryField : ', queryField);
-console.log('queryValue : ', queryValue);
-console.log('***************************');
-
-
-(() => {
-    return new Promise(resolve => {
-        console.log('on hold');
-        setTimeout(() => {
-            console.log('done');
-            resolve();
-        }, 5000);
-    });
-})()
+const utilService = container.get<IUtilService>(serviceTypes.IUtilService);
+const commandController = utilService.getControllerByCommand(command);
+if (commandController) {
+    commandController.execute({
+        cmd: command,
+        queryField: queryField,
+        queryValue: queryValue
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(err => {
+        console.log('***************************');
+        console.log(err);
+        console.log('***************************');
+    });    
+}
