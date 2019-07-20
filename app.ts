@@ -39,8 +39,8 @@ if (commandController) {
         queryField: queryField,
         queryValue: queryValue
     })
-    .then(response => {
-        console.log(JSON.stringify(response));
+    .then(pokemon => {        
+        console.log(JSON.stringify(pokemon, null, 1));
         process.exit(0);
     })
     .catch(err => {
