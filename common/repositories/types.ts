@@ -1,3 +1,4 @@
 export const types = {
-    IPokemonRepository: Symbol.for('IPokemonRepository')
+    IPokemonRepository: Symbol.for('IPokemonRepository'),
+    IEncounterRepository: Symbol.for('IEncounterRepository')
 };

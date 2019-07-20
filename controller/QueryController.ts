@@ -11,12 +11,8 @@ export class QueryController {
     private _pokemonService: IPokemonService;
 
     execute(request: any) {
-        const { queryField, queryValue} = request;
-        if (queryField === 'name') {
-            return this._pokemonService.getByName(queryValue);
-        } else {
-            return this._pokemonService.getById(queryValue);
-        }
+        const { queryValue} = request;
+        return this._pokemonService.getRecord(queryValue);
     }
 
 }

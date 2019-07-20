@@ -7,7 +7,7 @@ import { IReflectionService } from '../../services/IReflectionService';
 export abstract class RepositoryBase {
 
     @inject(commonServiceTypes.IReflectionService)
-    private _reflectionService: IReflectionService;
+    protected _reflectionService: IReflectionService;
 
     abstract getModelClass(): any;
 

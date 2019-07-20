@@ -21,6 +21,9 @@ import { ReflectionService } from './implementation/ReflectionService';
 import { IPokemonService } from './IPokemonService';
 import { PokemonService } from './implementation/PokemonService';
 
+import { IEncounterService } from './IEncounterService';
+import { EncounterService } from './implementation/EncounterService';
+
 export function configureCommonServices(container: Container): Container {
     container.bind<any>(commonServiceTypes.RequestLib).toConstantValue(request);
     container.bind<Container>(commonServiceTypes.Container).toConstantValue(container);
@@ -30,5 +33,6 @@ export function configureCommonServices(container: Container): Container {
     container.bind<IHttpService>(commonServiceTypes.IHttpService).to(HttpService).inSingletonScope();
     container.bind<IReflectionService>(commonServiceTypes.IReflectionService).to(ReflectionService).inSingletonScope();
     container.bind<IPokemonService>(commonServiceTypes.IPokemonService).to(PokemonService).inSingletonScope();
+    container.bind<IEncounterService>(commonServiceTypes.IEncounterService).to(EncounterService).inSingletonScope();
     return container;
 }

@@ -1,4 +1,3 @@
-export interface IPokemonRepository {
-    getById(id: string): Promise<any>;
-    getByName(name: string): Promise<any>;
+export interface IPokemonRepository {    
+    getRecord(value: string): Promise<any>;
 }

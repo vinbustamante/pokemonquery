@@ -6,5 +6,6 @@ export const types = {
     IHttpService: Symbol.for('IHttpService'),
     IUtilService: Symbol.for('IUtilService'),
     IReflectionService: Symbol.for('IReflectionService'),
-    IPokemonService: Symbol.for('IPokemonService')
+    IPokemonService: Symbol.for('IPokemonService'),
+    IEncounterService: Symbol.for('IEncounterService')
 };

@@ -1,5 +1,8 @@
 {
     "database": {
         "host": "https://pokeapi.co/api/v2"
+    },
+    "filter": {
+        "locations": ["kanto"]
     }
 }

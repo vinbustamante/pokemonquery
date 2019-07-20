@@ -1,4 +1,5 @@
-export interface IPokemonService {
-    getById(id: string): Promise<any>;
-    getByName(name: string): Promise<any>;
+import { PokemonDto } from './dto/PokemonDto';
+
+export interface IPokemonService {    
+    getRecord(value: string): Promise<PokemonDto>;
 }

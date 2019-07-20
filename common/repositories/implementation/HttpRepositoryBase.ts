@@ -16,9 +16,10 @@ export abstract class HttpRepositoryBase extends RepositoryBase {
     request(request: IHttpServiceRequest): Promise<any> {
         const databaseInfo = this._configService.getDatabaseInfo();
         const payload = {...request, url: databaseInfo.host + request.url };
+        const self = this;
         return this._httpService.invoke(payload)
             .then(response => {
-                return response.response;
+                return self._reflectionService.toJson(response.response);
             });
     }
 }
