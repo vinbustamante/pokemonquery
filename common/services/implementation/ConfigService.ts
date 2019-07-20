@@ -10,4 +10,8 @@ export class ConfigService implements IConfigService {
             db: 'pokemon'
         };
     }
+
+    getLocationFilters(): string[] {
+        return ['kanto'];
+    }
 }

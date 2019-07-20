@@ -11,6 +11,10 @@ export class ReflectionService implements IReflectionService {
         return _.isArray(value);
     }
 
+    isObject(value: any): boolean {
+        return _.isObject(value);
+    }
+
     createObjectFrom(klass: any, objectSource: object): any {
         let model: any;
         if (klass && objectSource) {

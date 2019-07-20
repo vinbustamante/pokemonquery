@@ -6,10 +6,6 @@ import { HttpMethodEnum } from '../../enum/HttpMethodEnum';
 @injectable()
 export class PokemonRepository extends HttpRepositoryBase implements IPokemonRepository {
 
-    getModelClass(): any {
-        return () => { }
-    }
-
     async getRecord(value: string): Promise<any> {
         return this.request({
             url: `/pokemon/${value}`,
