@@ -19,7 +19,7 @@ export abstract class HttpRepositoryBase extends RepositoryBase {
         const self = this;
         return this._httpService.invoke(payload)
             .then(response => {
-                return self._reflectionService.toJson(response.response);
+                return self._reflectionService.toObject(response.response);
             });
     }
 }

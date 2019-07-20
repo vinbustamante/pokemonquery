@@ -11,7 +11,7 @@ export class FlowService implements IFlowService {
         parallelCount = parallelCount || this._getDefaultParallelCount();
         return new Promise((resolve, reject) => {
             const results = [];
-            // @ts-ignore            
+            // @ts-ignore
             async.eachOfLimit(items, parallelCount, (item, index, callback) => {
                 handler(item)
                     .then(response => {

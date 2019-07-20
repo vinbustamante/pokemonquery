@@ -4,5 +4,8 @@
     },
     "filter": {
         "locations": ["kanto"]
+    },
+    "cache": {
+        "ttl": "7d"
     }
 }

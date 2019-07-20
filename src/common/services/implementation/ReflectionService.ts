@@ -35,13 +35,27 @@ export class ReflectionService implements IReflectionService {
         return objectPath.get(obj, key);
     }
 
-    toJson(value: string): any {
+    toObject(value: string): any {
         let json;
         if (_.isString(value)) {
             try {
                 json = JSON.parse(value);
-            } catch(e) {
+            } catch (e) {
                 json = {};
+            }
+        } else {
+            json = value;
+        }
+        return json;
+    }
+
+    toJson(value: string): any {
+        let json;
+        if (_.isObject(value)) {
+            try {
+                json = JSON.stringify(value);
+            } catch (e) {
+                json = value;
             }
         } else {
             json = value;

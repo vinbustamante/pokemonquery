@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { Container } from 'inversify';
-import { IUtilService } from './common/services/IUtilService';
-import { types as serviceTypes } from './common/services/types';
-import { configureCommonServices } from './common/services/ioc';
-import { configureCommonRepositories } from './common/repositories/ioc';
-import { configureCommandControllers } from './controller/ioc';
+import { IUtilService } from './src/common/services/IUtilService';
+import { types as serviceTypes } from './src/common/services/types';
+import { configureCommonServices } from './src/common/services/ioc';
+import { configureCommonRepositories } from './src/common/repositories/ioc';
+import { configureCommandControllers } from './src/controller/ioc';
 
 var argv = require('yargs')
     .usage('Usage: $0 <command> [options]')
@@ -41,10 +41,10 @@ if (commandController) {
     })
     .then(response => {
         console.log(JSON.stringify(response));
+        process.exit(0);
     })
     .catch(err => {
-        console.log('***************************');
         console.log(err);
-        console.log('***************************');
+        process.exit(1);
     });    
 }

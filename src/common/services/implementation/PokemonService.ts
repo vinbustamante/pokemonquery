@@ -15,7 +15,7 @@ export class PokemonService implements IPokemonService {
     private _pokemonRepository: IPokemonRepository;
 
     @inject(serviceTypes.IReflectionService)
-    private _reflectionService: IReflectionService;
+    protected _reflectionService: IReflectionService;
 
     @inject(serviceTypes.IEncounterService)
     private _encounterService: IEncounterService;

@@ -13,7 +13,7 @@
       "sourceMap": true,
       "allowJs": true,
       "target": "es2017",
-      "outDir": "./dist/pokemonquery",
+      "outDir": "./dist",
       "baseUrl": "./"
     },
     "exclude": [
