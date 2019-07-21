@@ -30,7 +30,6 @@ export class FileCacheService implements IFileCacheService {
         const cache = this._reflectionService.toObject(cacheContent);
         const expiredIn = cache.expiredIn;
         const currentTs = this._dateService.getCurrentTimestamp();
-
         if (currentTs > expiredIn) {
           return Promise.reject(new CacheExpiredException());
         } else {
@@ -38,7 +37,11 @@ export class FileCacheService implements IFileCacheService {
         }
       })
       .catch(err => {
-        return Promise.reject(new CacheMissedException(err.message));
+        if (err instanceof CacheExpiredException) {
+          return Promise.reject(err);
+        } else {
+          return Promise.reject(new CacheMissedException(err.message));
+        }
       });
   }
 

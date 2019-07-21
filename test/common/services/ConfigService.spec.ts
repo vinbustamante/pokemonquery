@@ -13,10 +13,10 @@ describe("ConfigService", () => {
         db: "pokemon"
       },
       filter: {
-        locations: ['kanto']
+        locations: ["kanto"]
       },
       cache: {
-        ttl: '1d'
+        ttl: "1d"
       }
     };
     _configService = new ConfigService(_config);
@@ -30,23 +30,23 @@ describe("ConfigService", () => {
     });
   });
 
-  describe('getLocationFilters()', () => {
-      it('should read config location', () => {
-        const locationFilter = _configService.getLocationFilters();
-        expect(locationFilter).toBe(_config.filter.locations);
-      });
+  describe("getLocationFilters()", () => {
+    it("should read config location", () => {
+      const locationFilter = _configService.getLocationFilters();
+      expect(locationFilter).toBe(_config.filter.locations);
+    });
   });
 
-  describe('getCacheTTL()', () => {
-      it('should read cache config', () => {
-        const ttl = _configService.getCacheTTL();
-        expect(ttl).toBe(_config.cache.ttl);
-      });
+  describe("getCacheTTL()", () => {
+    it("should read cache config", () => {
+      const ttl = _configService.getCacheTTL();
+      expect(ttl).toBe(_config.cache.ttl);
+    });
 
-      it('should return default 1d if no config is found', () => {
-        _config.cache.ttl = undefined;
-        const ttl = _configService.getCacheTTL();
-        expect(ttl).toBe('1d');
-      });
+    it("should return default 1d if no config is found", () => {
+      _config.cache.ttl = undefined;
+      const ttl = _configService.getCacheTTL();
+      expect(ttl).toBe("1d");
+    });
   });
 });
