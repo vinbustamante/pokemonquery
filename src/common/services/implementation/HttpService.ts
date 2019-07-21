@@ -31,7 +31,7 @@ export class HttpService implements IHttpService {
         body: undefined,
         qs: undefined
       };
-      if (httpRequest.method === HttpMethodEnum.post) {
+      if (requestPayload.method === HttpMethodEnum.post) {
         requestPayload.body = httpRequest.data || {};
       } else {
         requestPayload.qs = httpRequest.data || {};
@@ -39,7 +39,8 @@ export class HttpService implements IHttpService {
       requestPayload.headers = httpRequest.header;
       this._requestLib(requestPayload, function(error, response, body) {
         if (error) {
-          reject(error);
+          const message = error.messsage;
+          reject(new RemoteServiceException(message));
         } else {
           let status = parseInt(response.statusCode);
           if (status >= 200 && status < 300) {

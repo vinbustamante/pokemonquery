@@ -42,6 +42,7 @@ describe("FlowService", () => {
       sinon.stub(_asyncLib, "eachOfLimit");
       //@ts-ignore
       _asyncLib.eachOfLimit.callsFake(
+        //@ts-ignore
         (items, parallelCount, callback, done) => {
           items.forEach((item, index) => {
             callback(item, index, _asyncCallback);
