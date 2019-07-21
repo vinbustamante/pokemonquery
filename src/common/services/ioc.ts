@@ -2,6 +2,7 @@ import { Container } from 'inversify';
 import * as request from 'request';
 import * as fs from 'fs';
 import * as shell from 'shelljs';
+import * as moment from 'moment-timezone';
 
 import { types as commonServiceTypes } from './types';
 
@@ -43,6 +44,7 @@ export function configureCommonServices(container: Container): Container {
     container.bind<any>(commonServiceTypes.BashShell).toConstantValue(shell);
     container.bind<any>(commonServiceTypes.RequestLib).toConstantValue(request);
     container.bind<Container>(commonServiceTypes.Container).toConstantValue(container);
+    container.bind<any>(commonServiceTypes.DateLib).toConstantValue(moment);
     container.bind<IUtilService>(commonServiceTypes.IUtilService).to(UtilService).inSingletonScope();
     const mergeConfig = _loadFiles();
     const configService = new ConfigService(mergeConfig);

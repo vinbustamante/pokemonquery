@@ -1,5 +1,5 @@
-import { injectable } from 'inversify';
-const moment = require('moment-timezone');
+import { injectable, inject } from 'inversify';
+import { types as serviceTypes } from '../types';
 import { IDateService } from '../IDateService';
 
 @injectable()
@@ -12,9 +12,8 @@ export class DateService implements IDateService {
         d: 86400
     };
 
-    getCurrentDate(): Date {
-        return moment(new Date()).utc().toDate();
-    }
+    @inject(serviceTypes.DateLib)
+    private readonly _dateLib: any;
 
     timespanToSeconds(timespan: string): number {
         let seconds = 0;
@@ -23,7 +22,7 @@ export class DateService implements IDateService {
             const span = timespan.replace(num.toString(), '').trim();
             let multiplier = 1;
             if (span) {
-                multiplier = this._timespanMap[span.toLowerCase()];
+                multiplier = this._timespanMap[span.toLowerCase()] || 0;
             }
             seconds = num * multiplier;
         }
@@ -31,6 +30,6 @@ export class DateService implements IDateService {
     }
 
     getCurrentTimestamp(): number {
-        return moment().unix();
+        return this._dateLib().unix();
     }
 }

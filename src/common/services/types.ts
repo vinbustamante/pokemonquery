@@ -2,6 +2,7 @@ export const types = {
     Container: Symbol.for('ioc-container'),
     BashShell: Symbol.for('BashShell'),
     RequestLib: Symbol.for('RequestLib'),
+    DateLib: Symbol.for('datelib'),
     IConfigService: Symbol.for('IConfigService'),
     IFileService: Symbol.for('IFileService'),
     IJsonFileConfigMergeService: Symbol.for('IJsonFileConfigMergeService'),
