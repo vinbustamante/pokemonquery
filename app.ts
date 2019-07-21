@@ -47,4 +47,7 @@ if (commandController) {
         console.log(err);
         process.exit(1);
     });
+} else {
+    console.error('unknown command');
+    process.exit(1);
 }
