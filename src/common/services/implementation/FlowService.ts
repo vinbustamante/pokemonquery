@@ -1,18 +1,20 @@
-import { injectable } from "inversify";
+import { injectable, inject } from "inversify";
 import * as os from "os";
-import * as async from "async";
 import { IFlowService } from "../IFlowService";
+import { types as serviceTpes } from "../types";
 
 @injectable()
 export class FlowService implements IFlowService {
   private _parallelCount: number;
 
+  @inject(serviceTpes.AsyncLib)
+  private readonly _asyncLib: any;
+
   async each(items: any[], handler, parallelCount?: number): Promise<any[]> {
     parallelCount = parallelCount || this._getDefaultParallelCount();
     return new Promise((resolve, reject) => {
       const results = [];
-      // @ts-ignore
-      async.eachOfLimit(
+      this._asyncLib.eachOfLimit(
         items,
         parallelCount,
         (item, index, callback) => {

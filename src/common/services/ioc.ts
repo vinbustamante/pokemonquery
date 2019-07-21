@@ -3,6 +3,7 @@ import * as request from "request";
 import * as fs from "fs";
 import * as shell from "shelljs";
 import * as moment from "moment-timezone";
+import * as async from "async";
 
 import { types as commonServiceTypes } from "./types";
 
@@ -22,7 +23,6 @@ import { IReflectionService } from "./IReflectionService";
 import { ReflectionService } from "./implementation/ReflectionService";
 
 import { IPokemonService } from "./IPokemonService";
-// import { PokemonService } from './implementation/PokemonService';
 import { PokemonCacheableService } from "./implementation/cacheable/PokemonCacheableService";
 
 import { IEncounterService } from "./IEncounterService";
@@ -44,6 +44,7 @@ export function configureCommonServices(container: Container): Container {
   container.bind<any>(commonServiceTypes.BashShell).toConstantValue(shell);
   container.bind<any>(commonServiceTypes.RequestLib).toConstantValue(request);
   container.bind<any>(commonServiceTypes.FileLib).toConstantValue(fs);
+  container.bind<any>(commonServiceTypes.AsyncLib).toConstantValue(async);
   container
     .bind<Container>(commonServiceTypes.Container)
     .toConstantValue(container);
