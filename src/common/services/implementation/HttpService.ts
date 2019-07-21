@@ -23,7 +23,7 @@ export class HttpService implements IHttpService {
 
   invoke(httpRequest: IHttpServiceRequest): Promise<any> {
     return new Promise((resolve, reject) => {
-      let requestPayload = {
+      const requestPayload = {
         url: httpRequest.url,
         headers: undefined,
         method: httpRequest.method || HttpMethodEnum.post,
@@ -37,12 +37,12 @@ export class HttpService implements IHttpService {
         requestPayload.qs = httpRequest.data || {};
       }
       requestPayload.headers = httpRequest.header;
-      this._requestLib(requestPayload, function(error, response, body) {
+      this._requestLib(requestPayload, (error, response, body) => {
         if (error) {
           const message = error.messsage;
           reject(new RemoteServiceException(message));
         } else {
-          let status = parseInt(response.statusCode);
+          const status = parseInt(response.statusCode, 10);
           if (status >= 200 && status < 300) {
             resolve({
               status: status,

@@ -35,6 +35,11 @@ This arhitecture is use so that to minimize the effect of changing one component
 
 ![Architecture](assets/architecture.png)
 
+to check for formatting issue
+```
+npm run lint
+```
+
 to check unit test coverage
 ```
 npm test

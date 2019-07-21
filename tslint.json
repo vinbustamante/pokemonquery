@@ -24,7 +24,7 @@
       ],
       "eofline": false,
       "trailing-comma": [false, {"multiline": "never", "singleline": "never"}],
-      "comment-format": [true, "check-uppercase", "allow-trailing-lowercase"],
+      "comment-format": [true, "allow-trailing-lowercase"],
       "object-literal-shorthand": false
     },
     "rulesDirectory": [],    

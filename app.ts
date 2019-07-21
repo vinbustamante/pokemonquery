@@ -5,9 +5,9 @@ import { types as serviceTypes } from './src/common/services/types';
 import { configureCommonServices } from './src/common/services/ioc';
 import { configureCommonRepositories } from './src/common/repositories/ioc';
 import { configureCommandControllers } from './src/controller/ioc';
+import * as yargs from 'yargs';
 
-var argv = require('yargs')
-    .usage('Usage: $0 <command> [options]')
+const argv = yargs.usage('Usage: $0 <command> [options]')
     .command('query', 'get an information about the pokemon')
     .demandCommand(1, 'action command needed')
     .options({
@@ -26,7 +26,7 @@ var argv = require('yargs')
 const [command, queryValue] = argv._;
 const queryField = argv.field;
 
-let container = new Container();
+const container = new Container();
 configureCommonServices(container);
 configureCommonRepositories(container);
 configureCommandControllers(container);
@@ -39,12 +39,12 @@ if (commandController) {
         queryField: queryField,
         queryValue: queryValue
     })
-    .then(pokemon => {        
+    .then(pokemon => {
         console.log(JSON.stringify(pokemon, null, 1));
         process.exit(0);
     })
     .catch(err => {
         console.log(err);
         process.exit(1);
-    });    
+    });
 }
