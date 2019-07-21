@@ -1,5 +1,5 @@
 # Pokemon Terminal Query
-This is a proof of concept to show how to combine the following technologies
+a terminal gui to query and cache locally pokemon data
 
 ## Tools/Technologies use
 * [Typescript](https://www.typescriptlang.org/ "link title")
