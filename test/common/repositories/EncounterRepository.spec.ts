@@ -21,5 +21,4 @@ describe('EncounterRepository', () => {
             expect(arg.method).toBe('GET');
         });
     });
-
 });
