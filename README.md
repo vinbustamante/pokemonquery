@@ -18,6 +18,7 @@ check out the source code from github and compile
 
 To Compile, go to the source folder and run
 ```
+npm install
 npm run build
 ```
 
