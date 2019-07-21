@@ -48,14 +48,10 @@ export class ReflectionService implements IReflectionService {
     return json;
   }
 
-  toJson(value: string): any {
+  toJson(value: any): any {
     let json;
     if (_.isObject(value)) {
-      try {
-        json = JSON.stringify(value);
-      } catch (e) {
-        json = value;
-      }
+      json = JSON.stringify(value);
     } else {
       json = value;
     }

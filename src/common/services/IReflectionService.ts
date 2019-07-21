@@ -5,5 +5,5 @@ export interface IReflectionService {
   objectToConstructor(instance): any;
   readObjectValue(obj: any, key: string): any;
   toObject(value: string): any;
-  toJson(value: string): any;
+  toJson(value: any): any;
 }
