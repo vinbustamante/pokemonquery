@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import * as expect from 'expect';
+import * as expect from "expect";
 import * as sinon from "sinon";
 import { IHttpService } from "../../../src/common/services/IHttpService";
 import { HttpService } from "../../../src/common/services/implementation/HttpService";
@@ -41,7 +41,7 @@ describe("HttpService", () => {
     it("should call the invoke passing correct parameter", async () => {
       const api = "http://sample.com";
       const data = {
-        name: 'marvin'
+        name: "marvin"
       };
       await _httpService.post({ url: api, data: data });
       expect(lib.request.callCount).toBe(1);
@@ -53,13 +53,13 @@ describe("HttpService", () => {
     });
   });
 
-  describe('invoke()', () => {
-    it('should default to post method if not provided', async () => {
+  describe("invoke()", () => {
+    it("should default to post method if not provided", async () => {
       const api = "http://sample.com";
       const data = {
-        name: 'marvin'
+        name: "marvin"
       };
-      await _httpService.invoke({url: api, data: data});
+      await _httpService.invoke({ url: api, data: data });
       const request = lib.request.getCall(0).args[0];
       expect(lib.request.callCount).toBe(1);
       expect(request.url).toBe(api);
@@ -67,9 +67,9 @@ describe("HttpService", () => {
       expect(request.json).toBe(true);
     });
 
-    it('should provide default body if not provided', async () => {
+    it("should provide default body if not provided", async () => {
       const api = "http://sample.com";
-      await _httpService.invoke({url: api});
+      await _httpService.invoke({ url: api });
       const request = lib.request.getCall(0).args[0];
       expect(lib.request.callCount).toBe(1);
       expect(request.url).toBe(api);
@@ -77,25 +77,24 @@ describe("HttpService", () => {
       expect(request.json).toBe(true);
     });
 
-    it('should throw RemoteServiceException if there was an error contacting the server', (done) => {
+    it("should throw RemoteServiceException if there was an error contacting the server", done => {
       lib = {
         request: () => {}
       };
       sinon.stub(lib, "request");
       //@ts-ignore
       lib.request.callsFake((payload, handler) => {
-        handler({message: 'hello world'}, { statusCode: "200" }, "");
+        handler({ message: "hello world" }, { statusCode: "200" }, "");
       });
       (<any>_httpService)._requestLib = lib.request;
       const api = "http://sample.com";
-      _httpService.invoke({url: api})
-        .catch(err => {
-          expect(err instanceof RemoteServiceException).toBe(true);
-          done();
-        });
+      _httpService.invoke({ url: api }).catch(err => {
+        expect(err instanceof RemoteServiceException).toBe(true);
+        done();
+      });
     });
 
-    it('should throw AccessSecurityServiceException if status 401', (done) => {
+    it("should throw AccessSecurityServiceException if status 401", done => {
       lib = {
         request: () => {}
       };
@@ -106,14 +105,13 @@ describe("HttpService", () => {
       });
       (<any>_httpService)._requestLib = lib.request;
       const api = "http://sample.com";
-      _httpService.invoke({url: api})
-        .catch(err => {
-          expect(err instanceof AccessSecurityServiceException).toBe(true);
-          done();
-        });
+      _httpService.invoke({ url: api }).catch(err => {
+        expect(err instanceof AccessSecurityServiceException).toBe(true);
+        done();
+      });
     });
 
-    it('should throw ServerOveraCapacityException if status 503', (done) => {
+    it("should throw ServerOveraCapacityException if status 503", done => {
       lib = {
         request: () => {}
       };
@@ -124,14 +122,13 @@ describe("HttpService", () => {
       });
       (<any>_httpService)._requestLib = lib.request;
       const api = "http://sample.com";
-      _httpService.invoke({url: api})
-        .catch(err => {
-          expect(err instanceof ServerOveraCapacityException).toBe(true);
-          done();
-        });
+      _httpService.invoke({ url: api }).catch(err => {
+        expect(err instanceof ServerOveraCapacityException).toBe(true);
+        done();
+      });
     });
 
-    it('should throw RemoteServiceException for any status code other than 200', (done) => {
+    it("should throw RemoteServiceException for any status code other than 200", done => {
       lib = {
         request: () => {}
       };
@@ -142,11 +139,10 @@ describe("HttpService", () => {
       });
       (<any>_httpService)._requestLib = lib.request;
       const api = "http://sample.com";
-      _httpService.invoke({url: api})
-        .catch(err => {
-          expect(err instanceof RemoteServiceException).toBe(true);
-          done();
-        });
+      _httpService.invoke({ url: api }).catch(err => {
+        expect(err instanceof RemoteServiceException).toBe(true);
+        done();
+      });
     });
   });
 });

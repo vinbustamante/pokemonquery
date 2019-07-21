@@ -22,7 +22,7 @@ describe("FlowService", () => {
     });
 
     _flowService = new FlowService();
-    (<any> _flowService)._asyncLib = _asyncLib;
+    (<any>_flowService)._asyncLib = _asyncLib;
   });
 
   describe("each()", () => {
