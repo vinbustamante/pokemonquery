@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import { injectable, inject } from "inversify";
 import { FileAccessException } from "../exception/FileAccessException";
 import { IFileService } from "../IFileService";
@@ -10,9 +9,12 @@ export class FileService implements IFileService {
   @inject(serviceTypes.IReflectionService)
   private readonly _reflectionService: IReflectionService;
 
+  @inject(serviceTypes.FileLib)
+  private readonly _fileLib: any;
+
   read(file: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      fs.readFile(file, (err, content) => {
+      this._fileLib.readFile(file, (err, content) => {
         if (err) {
           reject(new FileAccessException(err.message));
         } else {
@@ -25,9 +27,9 @@ export class FileService implements IFileService {
   write(file: string, content: any): Promise<any> {
     const contentString = this._reflectionService.toJson(content);
     return new Promise((resolve, reject) => {
-      fs.writeFile(file, contentString, err => {
+      this._fileLib.writeFile(file, contentString, err => {
         if (err) {
-          reject(err);
+          reject(new FileAccessException(err.message));
         } else {
           resolve(contentString);
         }

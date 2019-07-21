@@ -43,6 +43,7 @@ import { FileCacheService } from "./implementation/FileCacheService";
 export function configureCommonServices(container: Container): Container {
   container.bind<any>(commonServiceTypes.BashShell).toConstantValue(shell);
   container.bind<any>(commonServiceTypes.RequestLib).toConstantValue(request);
+  container.bind<any>(commonServiceTypes.FileLib).toConstantValue(fs);
   container
     .bind<Container>(commonServiceTypes.Container)
     .toConstantValue(container);
