@@ -7,7 +7,6 @@ export const types = {
   AsyncLib: Symbol.for("AsyncLib"),
   IConfigService: Symbol.for("IConfigService"),
   IFileService: Symbol.for("IFileService"),
-  IJsonFileConfigMergeService: Symbol.for("IJsonFileConfigMergeService"),
   IFlowService: Symbol.for("IFlowService"),
   IDateService: Symbol.for("IDateService"),
   IHttpService: Symbol.for("IHttpService"),

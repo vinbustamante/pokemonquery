@@ -34,9 +34,6 @@ import { FlowService } from "./implementation/FlowService";
 import { IFileService } from "./IFileService";
 import { FileService } from "./implementation/FileService";
 
-import { IJsonFileConfigMergeService } from "./IJsonFileConfigMergeService";
-import { JsonFileConfigMergeService } from "./implementation/JsonFileConfigMergeService";
-
 import { IFileCacheService } from "./IFileCacheService";
 import { FileCacheService } from "./implementation/FileCacheService";
 
@@ -85,12 +82,6 @@ export function configureCommonServices(container: Container): Container {
   container
     .bind<IFileService>(commonServiceTypes.IFileService)
     .to(FileService)
-    .inSingletonScope();
-  container
-    .bind<IJsonFileConfigMergeService>(
-      commonServiceTypes.IJsonFileConfigMergeService
-    )
-    .to(JsonFileConfigMergeService)
     .inSingletonScope();
   container
     .bind<IFileCacheService>(commonServiceTypes.IFileCacheService)
