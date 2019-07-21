@@ -1,3 +1,3 @@
 export interface IUtilService {
-    getControllerByCommand(cmd: string): any;
+  getControllerByCommand(cmd: string): any;
 }

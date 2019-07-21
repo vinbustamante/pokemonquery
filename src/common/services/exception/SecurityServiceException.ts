@@ -1,7 +1,7 @@
-import { ServiceException } from './ServiceException';
+import { ServiceException } from "./ServiceException";
 
 export class SecurityServiceException extends ServiceException {
-    constructor(message?: string) {
-        super(message);
-    }
+  constructor(message?: string) {
+    super(message);
+  }
 }

@@ -1,4 +1,4 @@
 export class FileCacheDto {
-    expiredIn: number;
-    payload: any;
+  expiredIn: number;
+  payload: any;
 }

@@ -1,5 +1,5 @@
-import { EncounterDto } from './dto/EncounterDto';
+import { EncounterDto } from "./dto/EncounterDto";
 
 export interface IEncounterService {
-    getById(id: string): Promise<EncounterDto[]>;
+  getById(id: string): Promise<EncounterDto[]>;
 }

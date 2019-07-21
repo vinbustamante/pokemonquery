@@ -1,3 +1,3 @@
 export interface IEncounterRepository {
-    getById(id: string);
+  getById(id: string);
 }

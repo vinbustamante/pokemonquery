@@ -1,3 +1,3 @@
-export interface IPokemonRepository {    
-    getRecord(value: string): Promise<any>;
+export interface IPokemonRepository {
+  getRecord(value: string): Promise<any>;
 }

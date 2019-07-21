@@ -1,3 +1,3 @@
 export const types = {
-    Commands: Symbol.for('command-controllers')
+  Commands: Symbol.for("command-controllers")
 };

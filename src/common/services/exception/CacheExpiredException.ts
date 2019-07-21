@@ -1,7 +1,7 @@
-import { SecurityServiceException } from './SecurityServiceException';
+import { SecurityServiceException } from "./SecurityServiceException";
 
 export class CacheExpiredException extends SecurityServiceException {
-    constructor(message?: string) {
-        super(message);
-    }
+  constructor(message?: string) {
+    super(message);
+  }
 }
